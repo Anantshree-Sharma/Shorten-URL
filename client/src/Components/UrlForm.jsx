@@ -20,7 +20,7 @@ function UrlForm() {
     setIsVisble(true);
 
     try {
-      const response = await fetch("http://localhost:3001/api/url", {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/url`, {
         method: "POST",
         credentials: "include",
         headers: {
