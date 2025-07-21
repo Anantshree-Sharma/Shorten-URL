@@ -4,7 +4,9 @@ const handleRedirectUrl = async (req, res) => {
   const shortId = req.params.shortId;
   const ip =
     req.headers["x-forwarded-for"]?.split(",")[0] ||
-    req.connection.remoteAddress;
+    req.socket?.remoteAddress ||
+    null;
+
   try {
     const entry = await Url.findOneAndUpdate(
       { shortId },
