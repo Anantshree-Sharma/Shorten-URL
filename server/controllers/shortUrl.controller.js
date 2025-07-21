@@ -2,7 +2,7 @@ import Url from "../models/url.js";
 
 const handleRedirectUrl = async (req, res) => {
   const shortId = req.params.shortId;
-  const ip =
+  const ipAddress =
     req.headers["x-forwarded-for"]?.split(",")[0] ||
     req.socket?.remoteAddress ||
     null;
@@ -11,7 +11,7 @@ const handleRedirectUrl = async (req, res) => {
     const entry = await Url.findOneAndUpdate(
       { shortId },
       {
-        $push: { visitHistory: { ip } },
+        $push: { visitHistory: { ipAddress } },
       },
       { new: true }
     );
